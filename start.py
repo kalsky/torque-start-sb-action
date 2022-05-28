@@ -53,7 +53,7 @@ if __name__ == "__main__":
     account = os.environ.get("TORQUE_ACCOUNT", "")
     alt_url = os.environ.get("TORQUE_ALT_URL", "")
 
-    client = TorqueClient(space, token)
+    client = TorqueClient(space, token, alt_url=alt_url)
 
     try: 
         sandbox_id = client.start_sandbox(
