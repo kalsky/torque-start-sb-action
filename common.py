@@ -12,12 +12,15 @@ class TorqueSession(requests.Session):
 
 
 class TorqueClient:
-    def __init__(self, space: str, token: str, session: TorqueSession = TorqueSession(), account: str = None):
+    def __init__(self, space: str, token: str, session: TorqueSession = TorqueSession(), account: str = None, alt_url: str = None):
         self.token = token
         self.space = space
         self.session = session
         session.torque_auth(self.token)
-        self.base_api_url = f"https://qtorque.io/api/spaces/{self.space}"
+        if alt_url:
+            self.base_api_url = f"{alt_url}/api/spaces/{self.space}"
+        else:
+            self.base_api_url = f"https://qtorque.io/api/spaces/{self.space}"
 
     def _request(self, endpoint: str, method: str = 'GET', params: dict = None) -> requests.Response:
         self._validate_creds()
