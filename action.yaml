@@ -14,6 +14,9 @@ inputs:
   torque_token:
     description: 'A Torque longterm token'
     required: true
+  torque_alt_url:
+    description: 'A Torque alternative url'
+    required: false
   torque_account:
     required: false
     description: 'Your Torque account name. The account name is equal to your subdomain in the Torque URL.'
@@ -68,6 +71,7 @@ runs:
         TORQUE_SPACE: ${{ inputs.space }}
         TORQUE_TOKEN: ${{ inputs.torque_token }}
         TORQUE_ACCOUNT: ${{ inputs.torque_account }}
+        TORQUE_ALT_URL: ${{ inputs.torque_alt_url }}
       shell: bash
           
     - id: wait-sandbox
@@ -88,6 +92,7 @@ runs:
       env:
         TORQUE_SPACE: ${{ inputs.space }}
         TORQUE_TOKEN: ${{ inputs.torque_token }}
+        TORQUE_ALT_URL: ${{ inputs.torque_alt_url }}
         
 branding:
   icon: 'play-circle'  
